@@ -1,12 +1,13 @@
 import numpy as np
 import pandas as pd
 
+
 ##softmax
 def softmax(u):
   expu=np.exp(u)
   return expu/np.sum(expu)
 
-##cross entropy loss func
+##cross entropy cost func
 def crossEntropy(p,q):
   return -np.vdot(p,np.log(q))
 
@@ -20,13 +21,13 @@ def eval_L(X,Y,beta):
     qi=softmax(beta @ XiHat)
 
     L+=crossEntropy(Yi,qi)
-
+  
   return L
 
-##logisticregression function(stochastic)
+##logisticregression function 
 def logReg(X,Y,lr):
   numEpochs=5 ##epochs defined
-  n,d=X.shape   ##N=n_samples,d=n_features
+  n,d=X.shape   ##N-n_samples,d-n_features
   X=np.insert(X,0,1,axis=1)
   k=Y.shape[1]
   beta=np.zeros((k,d+1))
@@ -48,8 +49,8 @@ def logReg(X,Y,lr):
       grad_Li=np.outer(qi-Yi,XiHat)
 
       beta-=lr*grad_Li
-
-    return beta,Lvals
+    
+  return beta,Lvals
 
 ##predictor
 def predict(X,beta):
@@ -64,5 +65,5 @@ def predict(X,beta):
     p=np.argmax(qi)
 
     predictions.append(p)
-
+  
   return predictions
