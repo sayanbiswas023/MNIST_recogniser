@@ -41,7 +41,7 @@ x_test = (x_test  - x_test .min()) / (x_test .max() - x_test .min())
 y_test = (y_test  - y_test .min()) / (y_test .max() - y_test .min())
 
 ##training data fitted
-regressor = linearregression(learning_rate=0.05, n_iters=1000)
+regressor = linearregression(learning_rate=0.05, n_iters=4000)
 regressor.fit(x_train, y_train)
 
 ##making predictions
