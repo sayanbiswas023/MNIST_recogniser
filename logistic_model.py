@@ -16,11 +16,11 @@ def eval_L(X,Y,beta):
   N=X.shape[0]
   L=0.0
   for i in range(N):
-    XiHat=X[i]
-    Yi=Y[i]
-    qi=softmax(beta @ XiHat)
+    XiHat=X[i] ##augmented feature vector
+    Yi=Y[i] ##ground truth
+    qi=softmax(beta @ XiHat) ##probability vector
 
-    L+=crossEntropy(Yi,qi)
+    L+=crossEntropy(Yi,qi) ##loss for each i
   
   return L
 
@@ -39,16 +39,16 @@ def logReg(X,Y,lr):
 
     print("Epoch is: "+str(ep)+" Cost is:"+str(L))
 
-    prm=np.random.permutation(n)
+    prm=np.random.permutation(n) ##random values chosen to perform stochastic gradient descent
 
     for i in prm:
       XiHat=X[i]
       Yi=Y[i]
 
       qi=softmax(beta @ XiHat)
-      grad_Li=np.outer(qi-Yi,XiHat)
+      grad_Li=np.outer(qi-Yi,XiHat) ##gradient of loss
 
-      beta-=lr*grad_Li
+      beta-=lr*grad_Li ##parameter update
     
   return beta,Lvals
 
@@ -60,7 +60,7 @@ def predict(X,beta):
   predictions=[]
   for i in range (N):
     XiHat=X[i]
-    qi=softmax(beta @ XiHat)
+    qi=softmax(beta @ XiHat) 
 
     p=np.argmax(qi)
 
