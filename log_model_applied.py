@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from logistic_model import logReg,predict
+from logistic_model import logisticregression
 
 ##reading data
 train=pd.read_csv('sample_data/mnist_train_small.csv')
@@ -30,7 +30,7 @@ y_test.to_numpy()
 x_train=x_train/255.0
 x_test=x_test/255.0
 
-y_train=pd.get_dummies(y_train).values
+y_train=pd.get_dummies(y_train).values ## converts to one_hot
 x_train=x_train.values
 x_test=x_test.values
 
@@ -38,10 +38,11 @@ x_test=x_test.values
 
 ##returns parameters and loss from gradient descent
 lr=0.001
-beta,Lvals=logReg(x_train,y_train,lr)
+regressor=logisticregression()
+beta,Lvals=regressor.logReg(x_train,y_train,lr)
 
 ##predicted list
-predictions=predict(x_test,beta)
+predictions=regressor.predict(x_test,beta)
 
 
 ##accuracy tester
