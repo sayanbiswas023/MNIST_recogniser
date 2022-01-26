@@ -1,6 +1,6 @@
 # MacLea
-a ML Bootcamp repo
+Popular Machine Learning Algorithms to detect handwritten digits(MNIST dataset)
 
-Contains some basic ML algorithms;each in 2 seperate files: one containing the driving code and other imports datasets and applies the algorithm on it. 
+Each algorithm consists of 2 seperate files: one containing the driving code and other imports datasets and applies the algorithm on it. 
 
 The ipynb notebooks contain the accuracy measurements as well as trainig logs
